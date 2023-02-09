@@ -12,7 +12,7 @@ mongoose.set('strictQuery', true);
 
 mongoose.connect('mongodb+srv://ismayilabbasli:ismayil13@cluster.t3eug65.mongodb.net/?retryWrites=true&w=majority',()=>{
 
-app.use(express.static('uploads'))
+app.use(express.static(__dirname + '/uploads'));
 app.use(cors())
 app.use(express.json())
 app.use(bodyParser.json())
@@ -43,9 +43,9 @@ app.post('/uploads',async (req,res)=>{
      });
 })
 
-app.get('/uploads/:url',(req,res)=>{
+app.get('/uploads/:url', async (req,res)=>{
  console.log('Hello')
-res.render(req.params.url)
+ await res.sendFile(path.join(__dirname+`/uploads/${req.params.url}`));
 })
 
 
