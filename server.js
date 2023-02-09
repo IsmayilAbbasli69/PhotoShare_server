@@ -15,7 +15,6 @@ mongoose.connect('mongodb+srv://ismayilabbasli:ismayil13@cluster.t3eug65.mongodb
 app.use(express.static('public'))
 app.use(cors())
 app.use(express.json())
-app.use(bodyParser.json())
 console.log("DB connected")
 
 var storage = multer.diskStorage({
@@ -30,7 +29,15 @@ var storage = multer.diskStorage({
     limits:{fileSize: '20mb'},
  }).single('file');
 
+const model= model.find({})
 
+app.post(`/uploads/IMG-${model.url}`,async (req,res)=>{
+    try{
+        return res.json({status:200,data:req.body})
+    }catch(err){
+        return res.json({status:404,error:err.message})
+    }
+})
 
 app.post('/uploads',async (req,res)=>{
 
