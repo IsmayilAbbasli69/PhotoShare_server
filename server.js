@@ -31,13 +31,6 @@ var storage = multer.diskStorage({
 
 const model= model.find({})
 
-app.post(`/uploads/IMG-${model.url}`,async (req,res)=>{
-    try{
-        return res.json({status:200,data:req.body})
-    }catch(err){
-        return res.json({status:404,error:err.message})
-    }
-})
 
 app.post('/uploads',async (req,res)=>{
 
