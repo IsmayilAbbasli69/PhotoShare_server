@@ -12,35 +12,39 @@ mongoose.set('strictQuery', true);
 
 mongoose.connect('mongodb+srv://ismayilabbasli:ismayil13@cluster.t3eug65.mongodb.net/?retryWrites=true&w=majority',()=>{
 
-app.use(express.static('public'))
+app.use(express.static('uploads'))
 app.use(cors())
 app.use(express.json())
+app.use(bodyParser.json())
 console.log("DB connected")
 
 var storage = multer.diskStorage({
-    destination: __dirname + '/../public/uploads/',
+    destination: __dirname + '/uploads/',
     filename: function(req, file, cb){
-       cb(null,"IMAGE-"+ path.join(file.originalname));
+       cb(null,"IMAGE-"+file.originalname);
     }
  });
  
  var upload = multer({
     storage: storage,
-    limits:{fileSize: '20mb'},
+    limits:{fileSize: '25mb'},
  }).single('file');
 
-const model= model.find({})
 
 
 app.post('/uploads',async (req,res)=>{
 
     await upload(req, res, (err) => {
-        console.log("Request ---", req.body);
-        console.log("Request file ---");
-   
+        console.log("Request ---", req.path);
+        console.log("Request file ---",req.file);
+
         if(!err)
-           return res.send(200).end();
+           return res.json({status:'ok',file:req.file})
      });
+})
+
+app.post('/uploads/IMAGE-images.jpeg',(req,res)=>{
+ console.log('Helo')
 })
 
 
@@ -53,7 +57,7 @@ tags:req.body.tags,
 url:req.body.url,
 
     })
-    console.log(data)
+   
     return res.json({status:'ok',data:data.body})
 }
 catch(err){
