@@ -45,7 +45,7 @@ app.post('/uploads',async (req,res)=>{
 
 app.get('/uploads/:url',(req,res)=>{
  console.log('Hello')
- res.render('file')
+res.render(req.params.url)
 })
 
 
