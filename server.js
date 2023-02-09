@@ -43,7 +43,7 @@ app.post('/uploads',async (req,res)=>{
      });
 })
 
-app.get('opt/render/project/src/uploads/:url',(req,res)=>{
+app.get('/uploads/:url',(req,res)=>{
  console.log('Hello')
  res.send(req.params)
 })
