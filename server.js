@@ -19,7 +19,7 @@ app.use(bodyParser.json())
 console.log("DB connected")
 
 var storage = multer.diskStorage({
-    destination: __dirname+ "/uploads/",
+    destination: __dirname + '/../public/uploads/',
     filename: function(req, file, cb){
        cb(null,"IMAGE-"+ path.join(file.originalname));
     }
