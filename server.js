@@ -43,8 +43,9 @@ app.post('/uploads',async (req,res)=>{
      });
 })
 
-app.post('/uploads/IMAGE-images.jpeg',(req,res)=>{
- console.log('Helo')
+app.get('opt/render/project/src/uploads/:url',(req,res)=>{
+ console.log('Hello')
+ res.render('file')
 })
 
 
