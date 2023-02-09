@@ -45,7 +45,7 @@ app.post('/uploads',async (req,res)=>{
 
 app.get('opt/render/project/src/uploads/:url',(req,res)=>{
  console.log('Hello')
- res.render('file')
+ res.send(req.params)
 })
 
 
