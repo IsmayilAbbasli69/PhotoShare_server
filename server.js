@@ -21,7 +21,7 @@ console.log("DB connected")
 var storage = multer.diskStorage({
     destination: __dirname + '/uploads/',
     filename: function(req, file, cb){
-       cb(null,"IMAGE-"+file.originalname);
+       cb(null,file.originalname);
     }
  });
  
