@@ -45,7 +45,7 @@ app.post('/uploads',async (req,res)=>{
 
 app.get('/uploads/:url', async (req,res)=>{
  console.log('Hello')
- await res.sendFile(path.join(__dirname+`/uploads/${req.params.url}`));
+ await res.sendFile(path.join(__dirname+`/opt/render/project/src/uploads/${req.params.url}`));
 })
 
 
